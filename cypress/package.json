@@ -1,0 +1,7 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "dependencies": {
+    "cypress-xpath": "^2.0.1"
+  }
+}
