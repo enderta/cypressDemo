@@ -23,6 +23,7 @@ it('should be', function () {
             expect(response.status).to.eq(200)
         expect(response.body).to.have.length(20)
         expect (response.body[0].firstName).to.eq("Vergie")
+        expect (response.body[0].lastName).to.eq("Will")
 
     }
     )
