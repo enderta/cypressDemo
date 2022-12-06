@@ -46,7 +46,7 @@ describe('firsttest', function () {
                         expect(response.body).to.have.length(20)
                         expect(response.body.length).to.eq(UIId.length)
                         expect(response.body[0].id.toString()).to.eq(UIId[0])
-                        expect(response.body[0].lastName).to.eq("Will")
+
 
                     }
                 )
