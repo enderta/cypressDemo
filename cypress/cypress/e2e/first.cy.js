@@ -27,9 +27,12 @@ describe('firsttest', function () {
             ////tbody//tr//td[1]
             cy.xpath("(//*[@id='entity-menu']//a)[2]").click({ force: true })
             let UIId = []
-            cy.xpath("(//tbody//tr//td[1])[1]").then(($id) => {
-                UIId = $id.text()
-                cy.log(UIId)
+            cy.xpath("//tbody//tr//td[1]").then(($id) => {
+                for (let i = 0; i < $id.length; i++) {
+                    UIId.push($id[i].textContent)
+                }
+
+                cy.log(UIId[0])
                 cy.request({
                     method: 'GET',
                     url: 'https://www.gmibank.com/api/tp-customers?page=0&size=20&sort=id,asc&cacheBuster=1670271521733',
@@ -41,8 +44,8 @@ describe('firsttest', function () {
                         cy.log(response.body)
                         expect(response.status).to.eq(200)
                         expect(response.body).to.have.length(20)
-                        expect(response.body[0].id.toString()).to.eq(UIId.toString())
-                        expect(response.body[0].firstName).to.eq("Vergie")
+                        expect(response.body.length).to.eq(UIId.length)
+                        expect(response.body[0].id.toString()).to.eq(UIId[0])
                         expect(response.body[0].lastName).to.eq("Will")
 
                     }
