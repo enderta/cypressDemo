@@ -12,21 +12,21 @@ it('should be', function () {
     }
     )*/
     cy.request({
-        method: 'GET',
-        url: 'https://www.gmibank.com/api/tp-customers?page=0&size=20&sort=id,asc&cacheBuster=1670271521733',
-        headers: {
-            "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW5vLndpbnRoZWlzZXIiLCJhdXRoIjoiUk9MRV9FTVBMT1lFRSIsImV4cCI6MTY3MDMzNTcxMn0.ZaSkWlTxUs8F-sdb8iLmQAre7sm-QqxDshKNPKl4Cu1aPQa6KBJkeSpeXOuHCkF6m3EVQj_CrCtWYWIikmo8Bw"
 
-        }
-    }).then((response) => {
-            cy.log(response.body)
-            expect(response.status).to.eq(200)
-        expect(response.body).to.have.length(20)
-        expect (response.body[0].firstName).to.eq("Vergie")
-        expect (response.body[0].lastName).to.eq("Will")
+            method: 'GET',
+            url: 'https://www.gmibank.com/api/tp-customers?page=0&size=20&sort=id,asc&cacheBuster=1670271521733',
+            headers: {
+                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW5vLndpbnRoZWlzZXIiLCJhdXRoIjoiUk9MRV9FTVBMT1lFRSIsImV4cCI6MTY3MDY4MzY3OH0.qjaMYRFb9e_TY6mBeci6rakEpOrm4JRfvFTNzrRWhISvp5yKd-oVV5AjSgmjz8PjoojUWNnK48lE7jmK5v6DMw"
 
-    }
-    )
-}
-)
+            }
+        }).then((response) => {
+                cy.log(response.body)
+                expect(response.status).to.eq(200)
+                expect(response.body).to.have.length(20)
+
+
+
+            }
+        )
+    })
 })

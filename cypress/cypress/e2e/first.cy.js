@@ -53,7 +53,15 @@ describe('firsttest', function () {
 
 
             })
+
         })
+        it('should ', function () {
+            cy.xpath("(//*[@id='entity-menu']//a)[2]").click({ force: true })
+            cy.xpath("(//tbody//tr//td[1])[1]").click({ force: true })
+            let firstNameUI=cy.xpath("(//dd)[1]").invoke('text')
+            console.log(firstNameUI);
+
+        });
             afterEach(() => {
                 cy.get('#account-menu > .dropdown-toggle').click()
                 cy.xpath("//span[.='Sign out']").click()
