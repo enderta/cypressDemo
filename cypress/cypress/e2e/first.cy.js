@@ -22,7 +22,7 @@ describe('firsttest', function () {
 
         })
 
-        it('should be', function () {
+        it.skip('should be', function () {
 
             ////tbody//tr//td[1]
             cy.xpath("(//*[@id='entity-menu']//a)[2]").click({ force: true })
@@ -57,9 +57,29 @@ describe('firsttest', function () {
         })
         it('should ', function () {
             cy.xpath("(//*[@id='entity-menu']//a)[2]").click({ force: true })
-            cy.xpath("(//tbody//tr//td[1])[1]").click({ force: true })
-            let firstNameUI=cy.xpath("(//dd)[1]").invoke('text')
-            console.log(firstNameUI);
+            cy.get('tbody > :nth-child(1) > :nth-child(1) > .btn').click({ force: true })
+            cy.wait(2000)
+      let nameUI= cy.xpath("(//dd)[1]").then(($id) => {
+             cy.log($id.text())
+             cy.log($id[0].textContent)
+          cy.request({
+                method: 'GET',
+                url: 'https://www.gmibank.com/api/tp-customers?page=0&size=20&sort=id,asc&cacheBuster=1670271521733',
+                headers: {
+                    "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnaW5vLndpbnRoZWlzZXIiLCJhdXRoIjoiUk9MRV9FTVBMT1lFRSIsImV4cCI6MTY3MDg0OTgzN30.j9jkEXJ20vMdKgnlrIJO-dIm_2bOkg3TVjwUxXtBvWm9utI2dIlXqSJG2N_nSwmtfOj9Vs-JwCfxLNWvjQWVoQ"
+
+                }
+            }).then((response) => {
+                    cy.log(response.body)
+                    expect(response.status).to.eq(200)
+                    expect(response.body).to.have.length(20)
+                    expect(response.body[0].firstName).to.eq($id[0].textContent)
+                    expect(response.body[0].firstName).to.eq($id.text())
+          }
+            )
+
+
+      })
 
         });
             afterEach(() => {
