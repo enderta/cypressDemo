@@ -59,7 +59,7 @@ describe('firsttest', function () {
             cy.xpath("(//*[@id='entity-menu']//a)[2]").click({ force: true })
             cy.get('tbody > :nth-child(1) > :nth-child(1) > .btn').click({ force: true })
             cy.wait(2000)
-      let nameUI= cy.xpath("(//dd)[1]").then(($id) => {
+      cy.xpath("(//dd)[1]").then(($id) => {
              cy.log($id.text())
              cy.log($id[0].textContent)
           cy.request({
