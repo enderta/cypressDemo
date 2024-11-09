@@ -1,29 +1,23 @@
-# Node.js project setup with Cypress tests on a self-hosted agent
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-  - main
+- main
 
 pool:
+  vmImage: ubuntu-latest
   name: loupeAgent
 
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '20.x'
-    displayName: 'Install Node.js'
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
 
-  - script: |
-      npm install
-      npm run build
-    displayName: 'npm install and build'
-
-  - script: |
-      # Install Xvfb for running Cypress headlessly
-      sudo apt-get update
-      sudo apt-get install -y xvfb libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2
-    displayName: 'Install Xvfb and dependencies'
-
-  - script: |
-      # Run Cypress with Xvfb for GUI-based testing support
-      npx xvfb-run -a npx cypress run
-    displayName: 'Run Cypress tests'
+- script: |
+    npm install
+    npm run build
+    npx cypress run
+  displayName: 'npm install and build'
